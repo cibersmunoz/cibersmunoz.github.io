@@ -7,7 +7,7 @@ eleventyNavigation:
   order: 10
 ---
 
-Artista digital, developer y apasionado de todo lo que manipule datos.
+Personal digital, administrador de redes y apasionado de todo lo que manipule datos.
 
 
 Soy profesor de bases de datos y desarrollo web en [New Digital Talent](https://newdigitaltalent.com/) y ciberseguridad en [Mercedarias](https://fp.mercedarias.es/granada/titulacion/curso-de-especializacion-en-ciberseguridad-en-entornos-de-las-tecnologias-de-la-informacion/).
