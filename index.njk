@@ -1,0 +1,69 @@
+---
+title: "Home"
+layout: layouts/home.njk
+description: Description. Update me.
+image: https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg
+date: Last Modified
+---
+<div id="canvas-container" style="height: 400px; overflow: hidden;">
+  <div id="canvas"></div>
+</div>
+
+<script>
+let duckModel;
+let textureModel;
+let cybercat
+function preload() {
+  duckModel = loadModel('/img/duck/12248_Bird_v1_L2.obj', true);
+  textureModel = loadImage('/img/duck/12248_Bird_v1_diff.jpg');
+  cybercat = loadImage('/img/cybercat.jpeg');
+}
+let canvas;
+let max = 1.5
+function setup() {
+  if(window.innerWidth < 400) {
+    canvas = createCanvas(300, 400, WEBGL);
+    max = 1
+  } else {
+    canvas = createCanvas(400, 400, WEBGL);
+  }
+  canvas.parent("#canvas-container");
+  canvas.style("margin", "0 auto");
+  canvas.style("display", "block");
+  //canvas.style("border", "1px solid #fff");
+}
+let velX = 0.01;
+let velY = 0.01;
+let putTexture = false;
+
+function draw() {
+  console.log(cos(frameCount * 0.01) * 1.5);
+  if(Math.floor(cos(frameCount * 0.01) * 1.5 < 0.01) && Math.floor(cos(frameCount * 0.01) * 1.5 > -0.01)) {
+    
+    velX = random(-0.1, 0.1);
+    velY = random(-0.01, 0.01);
+    random(0, 1) > 0.5 ? putTexture = true : putTexture = false;
+    clear()
+  }
+  //clear()
+  rotateY(noise(frameCount * velY) * TWO_PI);
+  rotateX(frameCount * velX);
+  scale(cos(frameCount * 0.01) * 1.5);
+  normalMaterial();
+  if (duckModel) {
+    /*
+    if (textureModel && putTexture) {
+      texture(textureModel);
+    }
+    */
+    model(duckModel);
+
+  }
+}
+</script>
+
+<div id="posts">
+  <h2>Posts</h2>
+  {% set postslist = collections.posts %}
+  {% include "postslist.njk" %}
+</div>
